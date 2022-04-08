@@ -1,4 +1,55 @@
+.header {
+    height: 10vh;
+}
+.main-content {
+    display: flex;
+    justify-content: space-evenly;
+    text-align: center;
+    min-height: 90vh;
+}
+
+.fav-list {
+    width: 40%;
+    background-color: azure;
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+}
+.results {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 60%;
+    background-color: rgb(245, 228, 220);
+    &__item {
+        background-color: rgb(245, 228, 220);
+        width: 400px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        padding: 30px;
+        &--name {
+            color: rgb(106, 119, 142);
+            margin-bottom: 10px;
+        }
+    }
+}
+
 .cocktail-img {
     width: 200px;
     height: 250px;
+    border: 5px solid rgba(106, 119, 142, 0.479);
+    border-radius: 5%;
+    margin-bottom: 10px;
+}
+
+.fav-cocktail {
+    background-color: rgb(238, 172, 173);
+    & h2 {
+        color: #fff;
+    }
+    & img {
+        border: 5px solid #fff;
+    }
 }

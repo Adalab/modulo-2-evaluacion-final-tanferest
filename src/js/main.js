@@ -2,21 +2,22 @@
 
 console.log('>> Ready :)');
 
-// CONSTANTES
+// ---- CONSTANTES
 const inputSearch = document.querySelector('.js_input_search');
 const searchBtn = document.querySelector('.js_button');
 const searchResult = document.querySelector('.js_result_list');
-//let photo = '';
+const favoritesList = document.querySelector('.js_fav_list');
 let resultsList = [];
+let htmlResult = '';
+let favList = [];
 
-// FUNCIONES
+// ---- FUNCIONES
 
 // Pintar resultados de búsqueda
 function paintListResult() {
-  let htmlResult = '';
   for (const item of resultsList) {
-    htmlResult += `<li>`;
-    htmlResult += `<h2>${item.strDrink}</h2>`;
+    htmlResult += `<li class="results__item js_results_item" id=${item.idDrink}>`;
+    htmlResult += `<h3 class="results__item--name">${item.strDrink}</h3>`;
     if (item.strDrinkThumb !== null) {
       htmlResult += `<img class="cocktail-img" src=${item.strDrinkThumb}>`;
     } else {
@@ -25,6 +26,7 @@ function paintListResult() {
     htmlResult += `</li>`;
   }
   searchResult.innerHTML = htmlResult;
+  manageFavCocktails();
 }
 
 // Petición de los datos al api
@@ -47,5 +49,31 @@ function handleSearchClick(event) {
   console.log('has hecho click en buscar');
 }
 
-// EVENTOS
+/* Para añadir a favoritos:
+  1. Crear array para guardar los favoritos
+  2. Escuchar click sobre cada elemento li (currentTarget)
+  3. Al hacer click, añadir el elemento a la lista
+  4. Pintar los resultados en la ul de favoritos
+  5. Conseguir que no desaparezcan al hacer otra búsqueda
+*/
+
+function manageFavCocktails() {
+  const cocktailItems = document.querySelectorAll('.js_results_item');
+  for (const cocktail of cocktailItems) {
+    cocktail.addEventListener('click', handleFavClick);
+  }
+}
+
+function paintFavCocktails() {
+
+}
+
+function handleFavClick(event) {
+  const cocktailId = event.currentTarget.id;
+  console.log(cocktailId);
+  paintFavCocktails();
+}
+
+
+// ---- EVENTOS
 searchBtn.addEventListener('click', handleSearchClick);

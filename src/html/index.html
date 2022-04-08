@@ -1,23 +1,36 @@
 <!DOCTYPE html>
 <html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./assets/css/main.css">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./assets/css/main.css" />
     <title>Módulo 2: evaluación final</title>
-</head>
-<body>
-    <header><h1>Buscador de cócteles</h1></header>
-    <main>
-        <form action="">
-            <input class="js_input_search" type="text" name="" id="">
-            <button class="js_button">Buscar</button>
-            <button class="js_reset_button">Reset</button>
-        </form>
-        <ul class="js_fav_list"></ul>
-        <ul class="js_result_list"></ul>
+  </head>
+  <body>
+    <header class="header"><h1>Buscador de cócteles</h1></header>
+    <main class="main">
+      <form class="form" action="">
+        <input class="js_input_search" type="text" name="" id="" />
+        <button class="js_button">Buscar</button>
+        <button class="js_reset_button">Reset</button>
+      </form>
+      <div class="main-content">
+        <div class="fav-list">
+          <h2>Cócteles favoritos</h2>
+          <ul class="js_fav_list">
+          </ul>
+        </div>
+        <div class="results">
+          <h2>Resultados</h2>
+          <ul class="results js_result_list"></ul>
+        </div>
+      </div>
     </main>
     <script src="./assets/js/main.js"></script>
-</body>
+  </body>
 </html>

@@ -16,8 +16,8 @@ function paintListResult() {
   let htmlResult = '';
   for (const item of resultsList) {
     htmlResult += `<li>`;
-    htmlResult += `<h2>${item.strDrinkThumb}</h2>`;
-    if (item.strk !== null) {
+    htmlResult += `<h2>${item.strDrink}</h2>`;
+    if (item.strDrinkThumb !== null) {
       htmlResult += `<img class="cocktail-img" src=${item.strDrinkThumb}>`;
     } else {
       htmlResult += `<img class="cocktail-img" src=https://via.placeholder.com/210x295/ffffff/666666/?text=cocktail>`;

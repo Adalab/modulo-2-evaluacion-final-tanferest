@@ -39,6 +39,7 @@ function getCocktailData() {
       resultsList = data.drinks;
       console.log(resultsList);
       paintListResult();
+      manageFavCocktails();
     });
 }
 
@@ -46,7 +47,6 @@ function getCocktailData() {
 function handleSearchClick(event) {
   event.preventDefault();
   getCocktailData();
-  console.log('has hecho click en buscar');
 }
 
 /* Para añadir a favoritos:
@@ -57,6 +57,7 @@ function handleSearchClick(event) {
   5. Conseguir que no desaparezcan al hacer otra búsqueda
 */
 
+// Recorrer el array para escuchar click sobre cada uno
 function manageFavCocktails() {
   const cocktailItems = document.querySelectorAll('.js_results_item');
   for (const cocktail of cocktailItems) {
@@ -64,14 +65,17 @@ function manageFavCocktails() {
   }
 }
 
-function paintFavCocktails() {
-
-}
+// function paintFavCocktails() {}
 
 function handleFavClick(event) {
-  const cocktailId = event.currentTarget.id;
-  console.log(cocktailId);
-  paintFavCocktails();
+  const selectedCocktail = event.currentTarget.id;
+  console.log(selectedCocktail);
+// Busco en el resultado de búsqueda el cóctel seleccionado
+  const clickedDrink = resultsList.find(fav => {
+    return fav.idDrink === selectedCocktail;
+  });
+  console.log(clickedDrink);
+
 }
 
 

@@ -7,7 +7,8 @@ const inputSearch = document.querySelector('.js_input_search');
 const searchBtn = document.querySelector('.js_button');
 const searchResult = document.querySelector('.js_result_list');
 const favoritesList = document.querySelector('.js_fav_list');
-const altImage = 'https://via.placeholder.com/210x295/ffffff/666666/?text=cocktail';
+const altImage =
+  'https://via.placeholder.com/210x295/ffffff/666666/?text=cocktail';
 let resultsList = [];
 let favList = [];
 // ---- FUNCIONES
@@ -16,7 +17,17 @@ let favList = [];
 function paintListResult() {
   let htmlResult = '';
   for (const item of resultsList) {
-    htmlResult += `<li class="results__item js_results_item" id=${item.idDrink}>`;
+    const favDrink = favList.findIndex((fav) => {
+      return fav.idDrink === item.id;
+    });
+    console.log(favDrink);
+    let favClass = '';
+    if (favDrink === -1) {
+      favClass = '';
+    } else {
+      favClass = 'fav-cocktail';
+    }
+    htmlResult += `<li class="${favClass} results__item js_results_item" id=${item.idDrink}>`;
     htmlResult += `<h3 class="results__item--name">${item.strDrink}</h3>`;
     if (item.strDrinkThumb !== null) {
       htmlResult += `<img class="cocktail-img" src=${item.strDrinkThumb}>`;
@@ -26,6 +37,30 @@ function paintListResult() {
     htmlResult += `</li>`;
   }
   searchResult.innerHTML = htmlResult;
+  manageFavCocktails();
+}
+
+/* Para añadir a favoritos:
+  1. Crear array para guardar los favoritos-- x
+  2. Escuchar click sobre cada elemento li (currentTarget)-- x
+  3. Al hacer click, añadir el elemento a la lista --x
+  4. Pintar los resultados en la ul de favoritos -- x
+  5. Conseguir que no desaparezcan al hacer otra búsqueda --x
+*/
+
+function paintFavCocktails() {
+  let htmlFav = '';
+  for (const favItem of favList) {
+    htmlFav += `<li class="fav-cocktail results__item js_results_item" id=${favItem.idDrink}>`;
+    htmlFav += `<h3 class="results__item--name">${favItem.strDrink}</h3>`;
+    if (favItem.strDrinkThumb !== null) {
+      htmlFav += `<img class="cocktail-img" src=${favItem.strDrinkThumb}>`;
+    } else {
+      htmlFav += `<img class="cocktail-img" src=${altImage}>`;
+    }
+    htmlFav += `</li>`;
+  }
+  favoritesList.innerHTML = htmlFav;
   manageFavCocktails();
 }
 
@@ -47,39 +82,7 @@ function handleSearchClick(event) {
   event.preventDefault();
   getCocktailData();
 }
-
-/* Para añadir a favoritos:
-  1. Crear array para guardar los favoritos-- x
-  2. Escuchar click sobre cada elemento li (currentTarget)-- x
-  3. Al hacer click, añadir el elemento a la lista --x 
-  4. Pintar los resultados en la ul de favoritos
-  5. Conseguir que no desaparezcan al hacer otra búsqueda
-*/
-
-// Recorrer el array para escuchar click sobre cada uno
-function manageFavCocktails() {
-  const cocktailItems = document.querySelectorAll('.js_results_item');
-  for (const cocktail of cocktailItems) {
-    cocktail.addEventListener('click', handleFavClick);
-  }
-}
-
-function paintFavCocktails() {
-  let htmlFav = '';
-  for (const favItem of favList) {
-    htmlFav += `<li class="results__item js_results_item" id=${favItem.idDrink}>`;
-    htmlFav += `<h3 class="results__item--name">${favItem.strDrink}</h3>`;
-    if (favItem.strDrinkThumb !== null) {
-      htmlFav += `<img class="cocktail-img" src=${favItem.strDrinkThumb}>`;
-    } else {
-      htmlFav += `<img class="cocktail-img" src=${altImage}>`;
-    }
-    htmlFav += `</li>`;
-  }
-  favoritesList.innerHTML = htmlFav;
-  manageFavCocktails();
-}
-
+// Función manejadora para bebidas favoritas
 function handleFavClick(event) {
   const selectedCocktail = event.currentTarget.id;
   console.log(selectedCocktail);
@@ -88,20 +91,25 @@ function handleFavClick(event) {
     return fav.idDrink === selectedCocktail;
   });
   // Compruebo si el elemento está en la lista de favoritos
-  const favDrink = favList.findIndex((fav)=>{
+  const favDrink = favList.findIndex((fav) => {
     return fav.idDrink === selectedCocktail;
   });
   // Si no lo está, lo añado a la lista y si lo está, lo elimino
   if (favDrink === -1) {
     favList.push(clickedDrink);
   } else {
-    favList.splice(favDrink,1);
+    favList.splice(favDrink, 1);
   }
-  console.log(favList);
   paintFavCocktails();
+  paintListResult();
 }
 
-// ---- EVENTOS
+// ---- EVENTOS ---- //
 searchBtn.addEventListener('click', handleSearchClick);
-
-
+// Recorrer el array para escuchar click sobre cada uno
+function manageFavCocktails() {
+  const cocktailItems = document.querySelectorAll('.js_results_item');
+  for (const cocktail of cocktailItems) {
+    cocktail.addEventListener('click', handleFavClick);
+  }
+}

@@ -77,7 +77,8 @@ function paintFavCocktails() {
     htmlFav += `</li>`;
   }
   favoritesList.innerHTML = htmlFav;
-};
+  manageFavCocktails();
+}
 
 function handleFavClick(event) {
   const selectedCocktail = event.currentTarget.id;

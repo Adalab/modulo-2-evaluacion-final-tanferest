@@ -1,5 +1,7 @@
 'use strict';
 
+
+
 console.log('>> Ready :)');
 
 // ---- CONSTANTES
@@ -52,6 +54,7 @@ function paintFavCocktails() {
   let htmlFav = '';
   for (const favItem of favList) {
     htmlFav += `<li class="fav-cocktail results__item js_results_item" id=${favItem.idDrink}>`;
+    htmlFav += `<button class="xbutton js_fav_remove">x</button>`;
     htmlFav += `<h3 class="results__item--name">${favItem.strDrink}</h3>`;
     if (favItem.strDrinkThumb !== null) {
       htmlFav += `<img class="cocktail-img" src=${favItem.strDrinkThumb}>`;
@@ -61,7 +64,7 @@ function paintFavCocktails() {
     htmlFav += `</li>`;
   }
   favoritesList.innerHTML = htmlFav;
-  manageFavCocktails();
+  removeFavCocktails();
 }
 
 // Petición de los datos al api
@@ -101,6 +104,8 @@ function handleFavClick(event) {
     favList.splice(favDrink, 1);
   }
   paintFavCocktails();
+}
+function handleRemoveClick () {
   paintListResult();
 }
 
@@ -111,5 +116,11 @@ function manageFavCocktails() {
   const cocktailItems = document.querySelectorAll('.js_results_item');
   for (const cocktail of cocktailItems) {
     cocktail.addEventListener('click', handleFavClick);
+  }
+}
+function removeFavCocktails() {
+  const removeButton = document.querySelectorAll('.js_fav_remove');
+  for (const removeFav of removeButton) {
+    removeFav.addEventListener('click', handleRemoveClick);
   }
 }

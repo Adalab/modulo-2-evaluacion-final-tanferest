@@ -1,7 +1,5 @@
 'use strict';
 
-
-
 console.log('>> Ready :)');
 
 // ---- CONSTANTES
@@ -11,6 +9,8 @@ const searchResult = document.querySelector('.js_result_list');
 const favoritesList = document.querySelector('.js_fav_list');
 const altImage =
   'https://via.placeholder.com/210x295/ffffff/666666/?text=cocktail';
+const resetBtn = document.querySelector('.js_reset_button');
+const savedDrinks = JSON.parse(localStorage.getItem('favCocktails'));
 let resultsList = [];
 let favList = [];
 // ---- FUNCIONES
@@ -104,13 +104,31 @@ function handleFavClick(event) {
     favList.splice(favDrink, 1);
   }
   paintFavCocktails();
+  localStorage.setItem('favCocktails', JSON.stringify(favList));
 }
-function handleRemoveClick () {
+function handleRemoveClick() {
   paintListResult();
 }
 
+function handleResetFav(event) {
+  event.preventDefault();
+  favList = [];
+  paintFavCocktails();
+  localStorage.removeItem('favCocktails');
+}
+
+function localSaved() {
+  if (savedDrinks !== null) {
+    favList = savedDrinks;
+  }
+  paintFavCocktails();
+}
+
+localSaved();
+
 // ---- EVENTOS ---- //
 searchBtn.addEventListener('click', handleSearchClick);
+resetBtn.addEventListener('click', handleResetFav);
 // Recorrer el array para escuchar click sobre cada uno
 function manageFavCocktails() {
   const cocktailItems = document.querySelectorAll('.js_results_item');

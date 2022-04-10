@@ -20,7 +20,8 @@ function paintListResult() {
   let htmlResult = '';
   for (const item of resultsList) {
     const favDrink = favList.findIndex((fav) => {
-      return fav.idDrink === item.id;
+      // Aquí hay que buscar el id en los datos de la api
+      return fav.idDrink === item.idDrink;
     });
     console.log(favDrink);
     let favClass = '';
@@ -53,7 +54,7 @@ function paintListResult() {
 function paintFavCocktails() {
   let htmlFav = '';
   for (const favItem of favList) {
-    htmlFav += `<li class="fav-cocktail results__item js_results_item" id=${favItem.idDrink}>`;
+    htmlFav += `<li class="fav-cocktail results__item js_results_item" id="${favItem.idDrink}">`;
     htmlFav += `<button class="xbutton js_fav_remove">x</button>`;
     htmlFav += `<h3 class="results__item--name">${favItem.strDrink}</h3>`;
     if (favItem.strDrinkThumb !== null) {
@@ -88,14 +89,17 @@ function handleSearchClick(event) {
 // Función manejadora para bebidas favoritas
 function handleFavClick(event) {
   const selectedCocktail = event.currentTarget.id;
-  console.log(selectedCocktail);
+  toggleCocktail(selectedCocktail);
+}
+
+function toggleCocktail(item){
   // Busco en el resultado de búsqueda el ELEMENTO seleccionado
   const clickedDrink = resultsList.find((fav) => {
-    return fav.idDrink === selectedCocktail;
+    return fav.idDrink === item;
   });
   // Compruebo si el elemento está en la lista de favoritos
   const favDrink = favList.findIndex((fav) => {
-    return fav.idDrink === selectedCocktail;
+    return fav.idDrink === item;
   });
   // Si no lo está, lo añado a la lista y si lo está, lo elimino
   if (favDrink === -1) {
@@ -104,10 +108,13 @@ function handleFavClick(event) {
     favList.splice(favDrink, 1);
   }
   paintFavCocktails();
+  paintListResult();
   localStorage.setItem('favCocktails', JSON.stringify(favList));
 }
-function handleRemoveClick() {
-  paintListResult();
+
+function handleRemoveClick(event) {
+  const selectedCocktail = event.currentTarget.parentElement.id;
+  toggleCocktail(selectedCocktail);
 }
 
 function handleResetFav(event) {
@@ -131,13 +138,14 @@ searchBtn.addEventListener('click', handleSearchClick);
 resetBtn.addEventListener('click', handleResetFav);
 // Recorrer el array para escuchar click sobre cada uno
 function manageFavCocktails() {
-  const cocktailItems = document.querySelectorAll('.js_results_item');
+  const cocktailItems = document.querySelectorAll('.results .js_results_item');
   for (const cocktail of cocktailItems) {
     cocktail.addEventListener('click', handleFavClick);
   }
 }
 function removeFavCocktails() {
   const removeButton = document.querySelectorAll('.js_fav_remove');
+  console.log(removeButton);
   for (const removeFav of removeButton) {
     removeFav.addEventListener('click', handleRemoveClick);
   }

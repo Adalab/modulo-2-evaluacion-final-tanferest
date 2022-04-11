@@ -35,29 +35,25 @@
             color: rgb(106, 119, 142);
             margin-bottom: 10px;
         }
+        &--img {
+            width: 200px;
+            height: 250px;
+            border: 5px solid rgba(106, 119, 142, 0.479);
+            border-radius: 5%;
+            margin-bottom: 10px;
+        }
     }
-}
-
-.cocktail-img {
-    width: 200px;
-    height: 250px;
-    border: 5px solid rgba(106, 119, 142, 0.479);
-    border-radius: 5%;
-    margin-bottom: 10px;
 }
 
 .fav-cocktail {
     background-color: rgb(238, 172, 173);
+    position: relative;
+    border: 1px solid black;
+    width: 300px;
     & h3 {
         color: #fff;
     }
     & img {
         border: 5px solid #fff;
     }
-}
-
-.xbutton {
-    width: 15px;
-    height: 15px;
-    padding: 10px;
 }

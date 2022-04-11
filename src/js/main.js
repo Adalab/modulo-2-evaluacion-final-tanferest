@@ -42,9 +42,9 @@ function paintListResult() {
     htmlResult += `<li class="${favClass} results__item js_results_item" id=${item.idDrink}>`;
     htmlResult += `<h3 class="results__item--name">${item.strDrink}</h3>`;
     if (item.strDrinkThumb !== null) {
-      htmlResult += `<img class="cocktail-img" src=${item.strDrinkThumb}>`;
+      htmlResult += `<img class="results__item--img" src=${item.strDrinkThumb}>`;
     } else {
-      htmlResult += `<img class="cocktail-img" src=${altImage}>`;
+      htmlResult += `<img class="results__item--img" src=${altImage}>`;
     }
     htmlResult += `</li>`;
   }
@@ -60,7 +60,7 @@ function paintFavCocktails() {
     htmlFav += `<button class="xbutton js_fav_remove">x</button>`;
     htmlFav += `<h3 class="results__item--name">${favItem.strDrink}</h3>`;
     if (favItem.strDrinkThumb !== null) {
-      htmlFav += `<img class="cocktail-img" src=${favItem.strDrinkThumb}>`;
+      htmlFav += `<img class="results__item--img" src=${favItem.strDrinkThumb}>`;
     } else {
       htmlFav += `<img class="cocktail-img" src=${altImage}>`;
     }
@@ -104,7 +104,6 @@ function handleSearchClick(event) {
   event.preventDefault();
   getCocktailData();
 }
-
 // Marcar bebidas favoritas desde la lista de resultados
 function handleFavClick(event) {
   const selectedCocktail = event.currentTarget.id;

@@ -56,14 +56,14 @@ function paintListResult() {
 function paintFavCocktails() {
   let htmlFav = '';
   for (const favItem of favList) {
-    htmlFav += `<li class="fav-cocktail results__item js_results_item" id="${favItem.idDrink}">`;
-    htmlFav += `<button class="xbutton js_fav_remove">x</button>`;
-    htmlFav += `<h3 class="results__item--name">${favItem.strDrink}</h3>`;
+    htmlFav += `<li class="fav-cocktail" id="${favItem.idDrink}">`;
+    htmlFav += `<h3>${favItem.strDrink}</h3>`;
     if (favItem.strDrinkThumb !== null) {
-      htmlFav += `<img class="results__item--img" src=${favItem.strDrinkThumb}>`;
+      htmlFav += `<img src=${favItem.strDrinkThumb}>`;
     } else {
-      htmlFav += `<img class="cocktail-img" src=${altImage}>`;
+      htmlFav += `<img src=${altImage}>`;
     }
+    htmlFav += `<button class="xbutton js_fav_remove">Don't like it anymore</button>`;
     htmlFav += `</li>`;
   }
   favoritesList.innerHTML = htmlFav;

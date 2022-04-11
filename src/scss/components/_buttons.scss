@@ -1,13 +1,27 @@
 .xbutton {
-    position: absolute;
-    top: 0;
-    left: 0;
-    color: rgb(225, 225, 225);
-    background-color: rgb(97, 44, 44);
-    width: 15px;
-    height: 15px;
-    padding: 10px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    color: $light-text;
+    border: 1px solid $light-text;
+    border-radius: 30px;
+    font-size: 0.75rem;
+    width: 130px;
+    height: 25px;
+    padding: 3px;
+    margin: 10px 0;
+    &:hover {
+      background-color: $blue-light-background;
+    }
+}
+
+.reset {
+    margin-top: 10px;
+    border: 1px solid rgba(133, 168, 255, 0.475);
+    border-radius: 30px;
+    background-color: $blue-light-background;
+    color: $light-text;
+    width: 100px;
+    height: 30px;
+    margin-bottom: 10px;
+    &:hover {
+        background-color: $black;
+    }
 }

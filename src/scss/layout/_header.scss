@@ -2,6 +2,7 @@
   height: 30vh;
   background-image: linear-gradient(
       to top,
+      rgb(0, 0, 0),
       rgba(0, 0, 0, 0.52),
       rgba(117, 19, 93, 0.516)
     ),
@@ -13,7 +14,7 @@
   justify-content: center;
   align-items: center;
   &__titlecontainer {
-    background-color: $header-background;
+    background-color: $blue-light-background;
     min-width: 300px;
     width: 50%;
     height: 100px;
@@ -45,7 +46,7 @@
   &__input {
     border: 1px solid rgba(133, 168, 255, 0.475);
     border-radius: 30px;
-    background-color: $header-background;
+    background-color: $blue-light-background;
     color: $light-text;
     padding-left: 12px;
     height: 30px;

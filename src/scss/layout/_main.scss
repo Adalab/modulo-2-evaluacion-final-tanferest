@@ -1,25 +1,34 @@
 .main-content {
     display: flex;
-    justify-content: space-evenly;
+    flex-direction: column;
     text-align: center;
     min-height: 90vh;
-}
-
-.favcontainer {
-    width: 40%;
-    background-color: azure;
-    &__list {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
+    @include tablet {
+        flex-direction: row;
     }
 }
 .results {
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 60%;
+    width: 100%;
     background-color: rgb(245, 228, 220);
+    @include tablet {
+        width: 65%;
+    }
+    &__title {
+        font-family: 'Open Sans', sans-serif;
+        font-weight: 300;
+        padding: 10px;
+        background-color: $black;
+        margin: 0 10px 10px 10px;
+        border-bottom: 1px solid $light-text;
+        border-top: 1px solid $light-text;
+        color: $light-text;
+        @include tablet {
+            border: 1px solid $light-text;
+        }
+    }
     &__item {
         background-color: rgb(245, 228, 220);
         width: 400px;
@@ -42,15 +51,56 @@
     }
 }
 
+
+.favcontainer {
+    width: 100%;
+    background-color: $black;
+    @include tablet {
+        width: 35%;
+    }
+    &__title {
+        font-family: 'Open Sans', sans-serif;
+        font-weight: 300;
+        padding: 10px;
+        background-color: $black;
+        margin: 0 10px 10px 10px;
+        border-bottom: 1px solid $light-text;
+        border-top: 1px solid $light-text;
+        color: $light-text;
+        @include tablet {
+            border: 1px solid $light-text;
+        }
+    }
+    &__list {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+}
+
 .fav-cocktail {
-    background-color: rgb(238, 172, 173);
-    position: relative;
-    border: 1px solid black;
+    background-color: $dark-blue;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+    //border: 1px solid $blue-light-background;
+    border-radius: 5px;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px inset, rgba(0, 0, 0, 0.3) 0px 18px 36px -18px inset;
     width: 300px;
+    margin: 20px auto;
     & h3 {
+        font-weight: 300;
         color: #fff;
+        text-transform: uppercase;
+        margin-bottom: 10px;
     }
     & img {
-        border: 5px solid #fff;
+        border: 1px solid #fff;
+        width: 150px;
+        height: 150px;
+        border-radius: 5%;
+        margin-bottom: 10px;
     }
 }

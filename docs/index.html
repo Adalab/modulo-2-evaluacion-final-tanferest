@@ -4,20 +4,21 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600&display=swap"
-      rel="stylesheet"
-    />
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600&family=Playfair+Display+SC:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="./assets/css/main.css" />
     <title>Módulo 2: evaluación final</title>
   </head>
   <body>
-    <header class="header"><h1>Buscador de cócteles</h1></header>
+    <header class="header">
+      <div class="header__titlecontainer">
+      <h1 class="header__title">AdaCocktail</h1>
+    </div>
+    <form class="search">
+      <input class="search__input js_input_search" type="text" placeholder="Find your drink..."/>
+      <button class="search__button js_button">Search</button>
+    </form>
+    </header>
     <main class="main">
-      <form class="form" action="">
-        <input class="js_input_search" type="text" name="" id="" />
-        <button class="js_button">Buscar</button>
-      </form>
       <div class="main-content">
         <div class="favcontainer">
           <h2>Cócteles favoritos</h2>
